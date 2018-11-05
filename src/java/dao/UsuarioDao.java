@@ -1,6 +1,5 @@
 package dao;
 
-import model.Projeto;
 import model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -61,8 +60,7 @@ public class UsuarioDao {
                 return usuario;
             }
         } catch (SQLException sQLException) {
-            System.err.println("Erro: ");
-            System.err.println(sQLException.getStackTrace());
+            //System.err.println("Erro: " + sQLException.getStackTrace() + ".");
         }
         return null;
     }
@@ -94,7 +92,12 @@ public class UsuarioDao {
         }
         return null;
     }
-
+    
+    /**
+     * Atualiza os dados de um usuário. Retorna true se houver sucesso ou false em caso de falha.
+     * @param usuario
+     * @return boolean
+     */
     public boolean update(Usuario usuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -114,6 +117,12 @@ public class UsuarioDao {
         return false;
     }
 
+    /**
+     * Deleta um usuário com base em seu id. Retorna true em caso de sucesso ou false em caso de falha.
+     *
+     * @param id
+     * @return boolean
+     */
     public boolean delete(int id) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -130,7 +139,7 @@ public class UsuarioDao {
     }
 
     /**
-     * Retorna todos os usuários cadastrados em uma lista.
+     * Retorna todos os usuários cadastrados em uma lista. Retorna null se não houver resultados.
      *
      * @return ArrayList
      */
