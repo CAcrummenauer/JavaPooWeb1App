@@ -6,9 +6,10 @@ import java.sql.SQLException;
 
 public class ConectaDbPostgres {
     Connection connection = null;
-    private static final String URL = "jdbc:postgresql://localhost:5432/trabalhoPooWebI";
+    private static final String URL = "jdbc:postgresql://localhost:5432/JavaPooWeb1App";
     private static final String USUARIO = "postgres";
-    private static final String PASSWORD = "1234";
+    private static final String SENHA = "1234";
+    
     public static void main(String[] args) {
         new ConectaDbPostgres().getConexao();
     }
@@ -16,9 +17,9 @@ public class ConectaDbPostgres {
     public Connection getConexao() {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(URL, USUARIO, PASSWORD);
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
+            connection = DriverManager.getConnection(URL, USUARIO, SENHA);
+        } catch (ClassNotFoundException classNotFoundException) {
+            classNotFoundException.printStackTrace();
         } catch (SQLException sQLException) {
             sQLException.printStackTrace();
         }

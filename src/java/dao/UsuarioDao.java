@@ -10,7 +10,13 @@ import java.util.ArrayList;
 public class UsuarioDao {
 
     public static void main(String[] args) {
-        new UsuarioDao().read(1000);
+        Usuario usuario = new UsuarioDao().read(100);
+        if (usuario == null) {
+            System.out.println("Usuário não encontrado...");
+        } else {
+            System.out.println("Sucesso!");
+        }
+        
     }
 
     /**
@@ -44,8 +50,7 @@ public class UsuarioDao {
      * @return Usuario
      */
     public Usuario read(int id) {
-        try {
-            Connection connection = new ConectaDbPostgres().getConexao();
+        try (Connection connection = new ConectaDbPostgres().getConexao()) {
             String sql = "SELECT * FROM usuario WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -60,7 +65,10 @@ public class UsuarioDao {
                 return usuario;
             }
         } catch (SQLException sQLException) {
-            //System.err.println("Erro: " + sQLException.getStackTrace() + ".");
+            System.err.print("Erro: ");
+            sQLException.printStackTrace();
+        } catch (Exception exception) {
+
         }
         return null;
     }
@@ -92,9 +100,10 @@ public class UsuarioDao {
         }
         return null;
     }
-    
+
     /**
      * Atualiza os dados de um usuário. Retorna true se houver sucesso ou false em caso de falha.
+     *
      * @param usuario
      * @return boolean
      */
