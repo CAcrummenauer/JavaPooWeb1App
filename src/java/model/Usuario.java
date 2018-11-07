@@ -6,8 +6,9 @@
 package model;
 
 /**
+ * Classe utilizada para modelar os usuários do sistema...
  *
- * @author cezar
+ * @author Cezar Augusto Crummenauer
  */
 public class Usuario {
     private int id;
@@ -18,6 +19,13 @@ public class Usuario {
     
     public Usuario() {
         
+    }
+
+    public Usuario(String nome, String email, String senha, String tipo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.tipo = tipo;
     }
 
     public Usuario(int id, String nome, String email, String senha, String tipo) {

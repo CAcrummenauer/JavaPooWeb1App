@@ -7,17 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Classe responsável pela interação do sistema com o SGBD (destinada para operações com usuários).
+ *
+ * @author Cezar Augusto Crummenauer
+ */
 public class UsuarioDao {
-
-    public static void main(String[] args) {
-        Usuario usuario = new UsuarioDao().read(100);
-        if (usuario == null) {
-            System.out.println("Usuário não encontrado...");
-        } else {
-            System.out.println("Sucesso!");
-        }
-        
-    }
 
     /**
      * Cria um usuario. Retorna true se o usuário foi criado com sucesso. Retorna false se houve um problema durante a criação do usuário.
@@ -25,7 +20,7 @@ public class UsuarioDao {
      * @param usuario
      * @return boolean
      */
-    public boolean create(Usuario usuario) {
+    public boolean criarUsuario(Usuario usuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
             String sql = "INSERT INTO usuario (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
@@ -38,6 +33,7 @@ public class UsuarioDao {
                 return true;
             }
         } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
             sQLException.printStackTrace();
         }
         return false;
@@ -46,14 +42,14 @@ public class UsuarioDao {
     /**
      * Retorna um usuário com base em seu id. Retorna null se o usuário não for encontrado.
      *
-     * @param id
+     * @param idUsuario
      * @return Usuario
      */
-    public Usuario read(int id) {
+    public Usuario obterUsuario(int idUsuario) {
         try (Connection connection = new ConectaDbPostgres().getConexao()) {
             String sql = "SELECT * FROM usuario WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idUsuario);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Usuario usuario = new Usuario();
@@ -67,8 +63,6 @@ public class UsuarioDao {
         } catch (SQLException sQLException) {
             System.err.print("Erro: ");
             sQLException.printStackTrace();
-        } catch (Exception exception) {
-
         }
         return null;
     }
@@ -80,7 +74,7 @@ public class UsuarioDao {
      * @param senha
      * @return Usuario
      */
-    public Usuario autenticar(String email, String senha) {
+    public Usuario autenticarUsuario(String email, String senha) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
             String sql = " SELECT * FROM usuario WHERE email = ? AND senha = ?";
@@ -96,6 +90,7 @@ public class UsuarioDao {
                 return usuario;
             }
         } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
             sQLException.printStackTrace();
         }
         return null;
@@ -107,20 +102,21 @@ public class UsuarioDao {
      * @param usuario
      * @return boolean
      */
-    public boolean update(Usuario usuario) {
+    public boolean atualizarUsuario(Usuario usuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
-            String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, descricao = ?, tipo = ? WHERE id = ?";
+            String sql = "UPDATE usuario SET nome = ?, email = ?, senha = ?, tipo = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, usuario.getNome());
             preparedStatement.setString(2, usuario.getEmail());
             preparedStatement.setString(3, usuario.getSenha());
-            preparedStatement.setString(5, usuario.getTipo());
-            preparedStatement.setInt(6, usuario.getId());
-            if (preparedStatement.executeUpdate() > 1) {
+            preparedStatement.setString(4, usuario.getTipo());
+            preparedStatement.setInt(5, usuario.getId());
+            if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }
         } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
             sQLException.printStackTrace();
         }
         return false;
@@ -129,19 +125,20 @@ public class UsuarioDao {
     /**
      * Deleta um usuário com base em seu id. Retorna true em caso de sucesso ou false em caso de falha.
      *
-     * @param id
+     * @param idUsuario
      * @return boolean
      */
-    public boolean delete(int id) {
+    public boolean deletarUsuario(int idUsuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
             String sql = "DELETE FROM usuario WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idUsuario);
             if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }
         } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
             sQLException.printStackTrace();
         }
         return false;
@@ -152,7 +149,7 @@ public class UsuarioDao {
      *
      * @return ArrayList
      */
-    public ArrayList<Usuario> getUsuarios() {
+    public ArrayList<Usuario> obterUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -163,13 +160,14 @@ public class UsuarioDao {
                 Usuario usuario = new Usuario();
                 usuario.setId(resultSet.getInt("id"));
                 usuario.setNome(resultSet.getString("nome"));
-                usuario.setSenha(resultSet.getString("conteudo"));
+                usuario.setSenha(resultSet.getString("senha"));
                 usuario.setEmail(resultSet.getString("email"));
                 usuario.setTipo(resultSet.getString("tipo"));
                 usuarios.add(usuario);
             }
             return usuarios;
         } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
             sQLException.printStackTrace();
         }
         return null;
