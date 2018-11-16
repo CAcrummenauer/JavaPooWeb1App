@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <title>Cadastrar usuário</title>
@@ -21,7 +21,7 @@
         </nav>
         <div class="row container" style="padding-top: 50px">
             <div class="col s3"></div>
-            <form action="completarCadastroDeUsuario" method="POST" class="col s6">
+            <form action="projetos.jsp" method="POST" class="col s6">
                 <h4>Cadastre uma conta</h4>
                 <blockquote>
                     Fazendo isso, você poderá cadastrar e visualizar projetos
@@ -43,7 +43,7 @@
                         <input id="password" type="password" class="validate" name="senha" required>
                         <label for="password">Senha</label>
                     </div>
-                </div>                
+                </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar conta
                     <i class="material-icons right">send</i>
                 </button>

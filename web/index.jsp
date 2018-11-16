@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
     <head>
         <meta charset="utf-8">
         <title>Projetos - POO WEB I</title>
@@ -28,6 +28,7 @@
                 </blockquote>
                 <div class="row">
                     <div class="input-field col s12">
+                        <input id="nome" type="hidden" class="validate" name="nome" value="ApenasLoginSemNome">
                         <input id="email" type="email" class="validate" name="email" required>
                         <label for="email">E-mail</label>
                     </div>

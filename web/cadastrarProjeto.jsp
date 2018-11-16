@@ -1,7 +1,7 @@
-<%@page import="br.csi.dao.ProjetoDAO"%>
-<%@page import="br.csi.model.Projeto"%>
-<%@page import="br.csi.dao.UsuarioDAO"%>
-<%@page import="br.csi.model.Usuario"%>
+<%@page import="dao.ProjetoDao"%>
+<%@page import="model.Projeto"%>
+<%@page import="dao.UsuarioDao"%>
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
             <div class="container">
                 <div class="row">
                     <div class="px-5 col-md-8 text-center mx-auto">
-                        <h2 class="text-primary"><b><h2>Olá, ${sessionScope['usuarioLogado'].nome}</h2></b></h2>
+                        <h2 class="text-primary"><b><h2>Olá, ${sessionScope['usuarioAutenticado'].nome}</h2></b></h2>
                         <h2 class="my-3">Aqui, você pode cadastrar novos projetos:</h2>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             <tbody>
                                 <%
                                     try {
-                                        for (Projeto projeto : new ProjetoDAO().getProjetos()) {
+                                        for (Projeto projeto : new ProjetoDao().obterProjetos()) {
                                             out.print("<tr><td>");
                                             out.println(projeto.getNome());
                                             out.print("</td><td>");
