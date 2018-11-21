@@ -21,7 +21,7 @@
         </nav>
         <div class="row container" style="padding-top: 50px">
             <div class="col s3"></div>
-            <form action="projetos.jsp" method="POST" class="col s6">
+            <form action="projetos" method="POST" class="col s6">
                 <h4>Cadastre uma conta</h4>
                 <blockquote>
                     Fazendo isso, você poderá cadastrar e visualizar projetos

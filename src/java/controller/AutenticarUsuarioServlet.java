@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Usuario;
 
-@WebServlet(urlPatterns = "projetos.jsp")
+@WebServlet(urlPatterns = "projetos")
 public class AutenticarUsuarioServlet extends HttpServlet {
 
     @Override
@@ -40,10 +40,17 @@ public class AutenticarUsuarioServlet extends HttpServlet {
                 requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
                 requestDispatcher.forward(httpServletRequest, httpServletResponse);
             } else {
-                /*httpServletRequest.setAttribute("mensagem", "Falha ao cadastrar o usuário!");
+                httpServletRequest.setAttribute("mensagem", "Falha ao cadastrar o usuário!");
                 requestDispatcher = httpServletRequest.getRequestDispatcher("cadastrarUsuario.jsp");
-                requestDispatcher.forward(httpServletRequest, httpServletResponse);*/
+                requestDispatcher.forward(httpServletRequest, httpServletResponse);
             }
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher;
+        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }
