@@ -32,18 +32,21 @@
         </nav>
         <div class="row container">
             <div>
-                <h5>Aqui, você pode cadastrar novos projetos:</h5>
-                <form action="cadastrarProjeto" method="POST">
+                <h5>Aqui, você pode editar seu projeto:</h5>
+                <form action="finalizarEdicaoDeProjeto" method="POST">
                     <div class="input-field col s4">
-                        <input type="text" class="validate" id="nome" name="nome" required="">
+                        <input type="text" class="validate" id="nome" name="nome" required="" value="${sessionScope['projeto'].nome}">
                         <label for="nome">Nome do projeto</label>
                     </div>
                     <div class="input-field col s8">
-                        <input type="text" class="validate" id="descricao" name="descricao" required="">
+                        <input type="text" class="validate" id="descricao" name="descricao" required="" value="${sessionScope['projeto'].descricao}">
                         <label for="descricao">Descrição do projeto</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required=""></textarea>
+                        <input value="${sessionScope['projeto'].id}" type="hidden">
+                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required="">
+                            ${sessionScope['projeto'].conteudo}
+                        </textarea>
                         <label for="conteudo">Conteúdo do projeto</label>
                     </div>
                     <div class="col s12">
@@ -52,51 +55,6 @@
                         </button>
                     </div>
                 </form>
-            </div>
-        </div>
-        <div>
-            <hr>
-        </div>
-        <div class="row">
-            <div>
-                <div class="col s12">
-                    <h5>Projetos já cadastrados: </h5>
-                    <table class="highlight">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Descrição</th>
-                                <th>Conteúdo</th>
-                                <th>Opções</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
-                                <tr>
-                                    <td>
-                                        ${projeto.nome}
-                                    </td>
-                                    <td>
-                                        ${projeto.descricao}
-                                    </td>
-                                    <td>
-                                        ${projeto.conteudo}
-                                    </td>
-                                    <td>
-                                        <form action="editarProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn waves-effect waves-light" type="submit" name="action">Editar
-                                                <i class="material-icons right">mode_edit</i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col s1"></div>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

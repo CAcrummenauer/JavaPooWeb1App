@@ -1,5 +1,6 @@
 package controller;
 
+import dao.ProjetoDao;
 import dao.UsuarioDao;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
