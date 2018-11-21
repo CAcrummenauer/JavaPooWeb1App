@@ -29,52 +29,65 @@
             </div>
         </nav>
         <div class="row container">
-            <h5>Aqui, você pode cadastrar novos projetos:</h5>
-            <form action="cadastrarProjeto" method="POST">
-                <div class="input-field col s4">
-                    <input type="text" class="validate" id="nome" name="nome" required="">
-                    <label for="nome">Nome do projeto</label>
-                </div>
-                <div class="input-field col s8">
-                    <input type="text" class="validate" id="descricao" name="descricao" required="">
-                    <label for="descricao">Descrição do projeto</label>
-                </div>
-                <div class="input-field col s12">
-                    <textarea class="materialize-textarea" id="conteudo" name="conteudo" required=""></textarea>
-                    <label for="conteudo">Conteúdo do projeto</label>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto
-                    <i class="material-icons right">send</i>
-                </button>
-            </form>
+            <div>
+                <h5>Aqui, você pode cadastrar novos projetos:</h5>
+                <form action="cadastrarProjeto" method="POST">
+                    <div class="input-field col s4">
+                        <input type="text" class="validate" id="nome" name="nome" required="">
+                        <label for="nome">Nome do projeto</label>
+                    </div>
+                    <div class="input-field col s8">
+                        <input type="text" class="validate" id="descricao" name="descricao" required="">
+                        <label for="descricao">Descrição do projeto</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required=""></textarea>
+                        <label for="conteudo">Conteúdo do projeto</label>
+                    </div>
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
             <hr>
-            <h5>Projetos já cadastrados: </h5>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Conteúdo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-                        try {
-                            for (Projeto projeto : new ProjetoDao().obterProjetos()) {
-                                out.print("<tr><td>");
-                                out.println(projeto.getNome());
-                                out.print("</td><td>");
-                                out.println(projeto.getDescricao());
-                                out.print("</td><td>");
-                                out.println(projeto.getConteudo());
-                                out.print("</td></tr>");
-                            }
-                        } catch (Exception exc) {
-                            out.print("Deu ruim ao buscar os projetos...");
-                        }
-                    %>
-                </tbody>
-            </table>
+        </div>
+        <div class="row">
+            <div>
+                <div class="col s12">
+                    <h5>Projetos já cadastrados: </h5>
+                    <table class="highlight">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Conteúdo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%
+                                try {
+                                    for (Projeto projeto : new ProjetoDao().obterProjetos()) {
+                                        out.print("<tr><td>");
+                                        out.println(projeto.getNome());
+                                        out.print("</td><td>");
+                                        out.println(projeto.getDescricao());
+                                        out.print("</td><td>");
+                                        out.println(projeto.getConteudo());
+                                        out.print("</td></tr>");
+                                    }
+                                } catch (Exception exc) {
+                                    out.print("Deu ruim ao buscar os projetos...");
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col s1"></div>
+            </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
