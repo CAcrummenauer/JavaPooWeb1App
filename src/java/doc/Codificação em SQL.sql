@@ -11,7 +11,6 @@ CREATE TABLE Projeto (
     id_usuario INT NOT NULL,
     nome VARCHAR(128) NOT NULL,
     descricao VARCHAR(512) NOT NULL,
-    data_criacao DATE NOT NULL,
     conteudo TEXT NOT NULL,
     situacao VARCHAR(64) NOT NULL,
     imagem OID,

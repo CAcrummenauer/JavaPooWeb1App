@@ -1,7 +1,5 @@
 package model;
 
-import java.util.Date;
-
 /**
  * Classe utilizada para modelar os projetos do sistema...
  *
@@ -11,7 +9,6 @@ public class Projeto {
 
     private int id;
     private String nome;
-    private Date dataCriacao;
     private String descricao;
     private String conteudo;
     private String situacao;
@@ -20,18 +17,16 @@ public class Projeto {
 
     }
 
-    public Projeto(String nome, Date dataCriacao, String descricao, String conteudo, String situacao) {
+    public Projeto(String nome, String descricao, String conteudo, String situacao) {
         this.nome = nome;
-        this.dataCriacao = dataCriacao;
         this.descricao = descricao;
         this.conteudo = conteudo;
         this.situacao = situacao;
     }
 
-    public Projeto(int id, String nome, Date dataCriacao, String descricao, String conteudo, String situacao) {
+    public Projeto(int id, String nome, String descricao, String conteudo, String situacao) {
         this.id = id;
         this.nome = nome;
-        this.dataCriacao = dataCriacao;
         this.descricao = descricao;
         this.conteudo = conteudo;
         this.situacao = situacao;
@@ -51,14 +46,6 @@ public class Projeto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
     }
 
     public String getDescricao() {

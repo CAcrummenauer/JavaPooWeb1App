@@ -28,20 +28,19 @@
                 </ul>
             </div>
         </nav>
-
         <div class="row container">
             <h5>Aqui, você pode cadastrar novos projetos:</h5>
             <form action="cadastrarProjeto" method="POST">
-                <div class="input-field">
-                    <input type="text" class="validate" id="nome" name="nome">
+                <div class="input-field col s4">
+                    <input type="text" class="validate" id="nome" name="nome" required="">
                     <label for="nome">Nome do projeto</label>
                 </div>
-                <div class="input-field">
-                    <input type="text" class="validate" id="descricao" name="descricao">
+                <div class="input-field col s8">
+                    <input type="text" class="validate" id="descricao" name="descricao" required="">
                     <label for="descricao">Descrição do projeto</label>
                 </div>
-                <div class="input-field">
-                    <textarea class="materialize-textarea" id="conteudo" name="conteudo"></textarea>
+                <div class="input-field col s12">
+                    <textarea class="materialize-textarea" id="conteudo" name="conteudo" required=""></textarea>
                     <label for="conteudo">Conteúdo do projeto</label>
                 </div>
                 <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto

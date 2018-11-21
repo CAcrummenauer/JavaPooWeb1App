@@ -25,14 +25,13 @@ public class ProjetoDao {
     public boolean criarProjeto(Projeto projeto, int idUsuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
-            String sql = "INSERT INTO projeto (id_usuario, nome, descricao, data_criacao, conteudo, situacao) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO projeto (id_usuario, nome, descricao, conteudo, situacao) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idUsuario);
             preparedStatement.setString(2, projeto.getNome());
             preparedStatement.setString(3, projeto.getDescricao());
-            preparedStatement.setDate(4, (Date) projeto.getDataCriacao());
-            preparedStatement.setString(5, projeto.getConteudo());
-            preparedStatement.setString(6, projeto.getSituacao());
+            preparedStatement.setString(4, projeto.getConteudo());
+            preparedStatement.setString(5, projeto.getSituacao());
             if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }
@@ -60,7 +59,6 @@ public class ProjetoDao {
                 projeto.setId(resultSet.getInt("id"));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
-                projeto.setDataCriacao(resultSet.getDate("data_criacao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
                 projeto.setSituacao(resultSet.getString("situacao"));
                 return projeto;
@@ -129,7 +127,7 @@ public class ProjetoDao {
         ArrayList<Projeto> projetos = new ArrayList<Projeto>();
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
-            String sql = "SELECT * FROM projeto";
+            String sql = "SELECT * FROM projeto ORDER BY nome";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -137,7 +135,6 @@ public class ProjetoDao {
                 projeto.setId(resultSet.getInt("id"));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
-                projeto.setDataCriacao(resultSet.getDate("data_criacao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
                 projeto.setSituacao(resultSet.getString("situacao"));
                 projetos.add(projeto);
