@@ -109,7 +109,16 @@
                             </div>
                             <div class="card-content">
                                 <span class="card-title">${projeto.nome}</span>
-                                <p>${projeto.descricao}</p>                            
+                                <p>${projeto.descricao}</p>
+                                <c:if test = "${projeto.situacao == 'Reprovado'}">
+                                    <p><i class="material-icons">report</i> Projeto reprovado!</p>
+                                </c:if>
+                                <c:if test = "${projeto.situacao == 'Aguardando avaliação...'}">
+                                    <p><i class="material-icons">report_problem</i> Projeto reprovado!</p>
+                                </c:if>
+                                <c:if test = "${projeto.situacao == 'Aprovado' && (sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario)}">
+                                    <p><i class="material-icons">public</i> Projeto aprovado! Ele pode ser visto publicamente...</p>
+                                </c:if>
                             </div>
                         </div>
                     </div>
