@@ -61,28 +61,31 @@
         <div class="row col s10">
             <h5>Projetos já cadastrados: </h5>
             <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
-                <div class="col s3">
+                <div class="col m6 l4">
                     <div class="card">
                         <div class="card-image">
                             <img src="imagens/imagem.jpg">
                             <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                            <div class="row col s3">
+                                <form action="excluirProjeto" method="POST">
+                                    <input name="id" value="${projeto.id}" type="hidden">
+                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
+                                        <i class="material-icons left">delete_forever</i>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="row col s3">
+                                <form action="editarProjeto" method="POST">
+                                    <input name="id" value="${projeto.id}" type="hidden">
+                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light yellow" type="submit" name="action" style="margin-right: 80px">
+                                        <i class="material-icons left">mode_edit</i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                         <div class="card-content">
                             <span class="card-title">${projeto.nome}</span>
-                            <p>${projeto.descricao}</p>
-                            <form action="editarProjeto" method="POST">
-                                <input name="id" value="${projeto.id}" type="hidden">
-                                <button class="btn waves-effect waves-light yellow accent-2" type="submit" name="action">Editar
-                                    <i class="material-icons left">mode_edit</i>
-                                </button>
-                            </form>
-                            <br>
-                            <form action="excluirProjeto" method="POST">
-                                <input name="id" value="${projeto.id}" type="hidden">
-                                <button class="btn waves-effect waves-light red" type="submit" name="action">Excluir
-                                    <i class="material-icons left">delete_forever</i>
-                                </button>
-                            </form>
+                            <p>${projeto.descricao}</p>                            
                         </div>
                     </div>
                 </div>
