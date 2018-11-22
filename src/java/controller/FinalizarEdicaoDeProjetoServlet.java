@@ -21,7 +21,7 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         RequestDispatcher requestDispatcher;
         
-        if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando aprovação..."))) {
+        if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"))) {
             requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
             requestDispatcher.forward(httpServletRequest, httpServletResponse);
         } else {

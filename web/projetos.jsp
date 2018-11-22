@@ -111,11 +111,11 @@
                                 <span class="card-title">${projeto.nome}</span>
                                 <p>${projeto.descricao}</p>
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
-                                    <c:if test = "${red.situacao == 'Reprovado'}">
-                                        <p class="orange-text text-darken-4"><i class="material-icons">report</i> Projeto reprovado!</p>
+                                    <c:if test = "${projeto.situacao == 'Reprovado'}">
+                                        <p class="red-text text-darken-4"><i class="material-icons">report</i> Projeto reprovado!</p>
                                     </c:if>
-                                    <c:if test = "${projeto.situacao == 'Aguardando avaliação...'}">
-                                        <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i> Projeto aguardando avaliação!</p>
+                                    <c:if test = "${projeto.situacao == 'Aguardando avaliação'}">
+                                        <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i> Projeto aguardando avaliação...</p>
                                     </c:if>
                                     <c:if test = "${projeto.situacao == 'Aprovado'}">
                                         <p class="green-text text-darken-4"><i class="material-icons">public</i> Projeto aprovado! Ele pode ser visto publicamente...</p>
