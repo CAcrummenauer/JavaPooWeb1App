@@ -60,54 +60,56 @@
         <div class="row col s10">
             <h5 style="margin-left: 10px">Projetos já cadastrados: </h5>
             <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
-                <div class="col m6 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="imagens/imagem.jpg">
-                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                            <div class="row col s3">
-                                <form action="excluirProjeto" method="POST">
-                                    <input name="id" value="${projeto.id}" type="hidden">
-                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
-                                        <i class="material-icons left">delete_forever</i>
-                                    </button>
-                                </form>
-                            </div>
-                            <div class="row col s3">
-                                <form action="editarProjeto" method="POST">
-                                    <input name="id" value="${projeto.id}" type="hidden">
-                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
-                                        <i class="material-icons left">mode_edit</i>
-                                    </button>
-                                </form>
-                            </div>
-                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao != 'Aprovado'}">
+                <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || usuario.tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
+                    <div class="col m6 l4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="imagens/imagem.jpg">
+                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                                 <div class="row col s3">
-                                    <form action="aprovarProjeto" method="POST">
+                                    <form action="excluirProjeto" method="POST">
                                         <input name="id" value="${projeto.id}" type="hidden">
-                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
-                                            <i class="material-icons left">thumb_up</i>
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
+                                            <i class="material-icons left">delete_forever</i>
                                         </button>
                                     </form>
                                 </div>
-                            </c:if>
-                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao == 'Aprovado'}">
                                 <div class="row col s3">
-                                    <form action="reprovarProjeto" method="POST">
+                                    <form action="editarProjeto" method="POST">
                                         <input name="id" value="${projeto.id}" type="hidden">
-                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light lime accent-2" type="submit" name="action" style="margin-right: 160px">
-                                            <i class="material-icons left">thumb_down</i>
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
+                                            <i class="material-icons left">mode_edit</i>
                                         </button>
                                     </form>
                                 </div>
-                            </c:if>
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title">${projeto.nome}</span>
-                            <p>${projeto.descricao}</p>                            
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao != 'Aprovado'}">
+                                    <div class="row col s3">
+                                        <form action="aprovarProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
+                                                <i class="material-icons left">thumb_up</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao == 'Aprovado'}">
+                                    <div class="row col s3">
+                                        <form action="reprovarProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light orange accent-4" type="submit" name="action" style="margin-right: 160px">
+                                                <i class="material-icons left">thumb_down</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">${projeto.nome}</span>
+                                <p>${projeto.descricao}</p>                            
+                            </div>
                         </div>
                     </div>
-                </div>
+                </c:if>
             </c:forEach>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -56,6 +56,7 @@ public class ProjetoDao {
             while (resultSet.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(resultSet.getInt("id"));
+                projeto.setIdUsuario(resultSet.getInt("id_usuario"));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
@@ -116,7 +117,7 @@ public class ProjetoDao {
         }
         return false;
     }
-    
+
     public boolean aprovarProjeto(int idProjeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -132,7 +133,7 @@ public class ProjetoDao {
         }
         return false;
     }
-    
+
     public boolean reprovarProjeto(int idProjeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -164,6 +165,7 @@ public class ProjetoDao {
             while (resultSet.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(resultSet.getInt("id"));
+                projeto.setIdUsuario(resultSet.getInt("id_usuario"));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
