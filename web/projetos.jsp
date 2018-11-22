@@ -66,22 +66,26 @@
                             <div class="card-image">
                                 <img src="imagens/imagem.jpg">
                                 <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-                                <div class="row col s3">
-                                    <form action="excluirProjeto" method="POST">
-                                        <input name="id" value="${projeto.id}" type="hidden">
-                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
-                                            <i class="material-icons left">delete_forever</i>
-                                        </button>
-                                    </form>
-                                </div>
-                                <div class="row col s3">
-                                    <form action="editarProjeto" method="POST">
-                                        <input name="id" value="${projeto.id}" type="hidden">
-                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
-                                            <i class="material-icons left">mode_edit</i>
-                                        </button>
-                                    </form>
-                                </div>
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
+                                    <div class="row col s3">
+                                        <form action="excluirProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
+                                                <i class="material-icons left">delete_forever</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
+                                    <div class="row col s3">
+                                        <form action="editarProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
+                                                <i class="material-icons left">mode_edit</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </c:if>
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao != 'Aprovado'}">
                                     <div class="row col s3">
                                         <form action="aprovarProjeto" method="POST">
