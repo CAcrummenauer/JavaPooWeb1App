@@ -57,9 +57,8 @@
         <div>
             <hr>
         </div>
-        <div class="row col s1"></div>
         <div class="row col s10">
-            <h5>Projetos já cadastrados: </h5>
+            <h5 style="margin-left: 10px">Projetos já cadastrados: </h5>
             <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
                 <div class="col m6 l4">
                     <div class="card">
@@ -77,11 +76,21 @@
                             <div class="row col s3">
                                 <form action="editarProjeto" method="POST">
                                     <input name="id" value="${projeto.id}" type="hidden">
-                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light yellow" type="submit" name="action" style="margin-right: 80px">
+                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-1" type="submit" name="action" style="margin-right: 80px">
                                         <i class="material-icons left">mode_edit</i>
                                     </button>
                                 </form>
                             </div>
+                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && (projeto.situacao == 'Aguardando avaliação' || projeto.situacao == 'Reprovado')}">
+                                <div class="row col s3">
+                                    <form action="aprovarProjeto" method="POST">
+                                        <input name="id" value="${projeto.id}" type="hidden">
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
+                                            <i class="material-icons left">verified_user</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </c:if>
                         </div>
                         <div class="card-content">
                             <span class="card-title">${projeto.nome}</span>
@@ -89,9 +98,8 @@
                         </div>
                     </div>
                 </div>
-            </c:forEach>                
+            </c:forEach>
         </div>
-        <div class="col s1"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
