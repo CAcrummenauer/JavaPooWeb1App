@@ -43,6 +43,7 @@
                         <label for="descricao">Descrição do projeto</label>
                     </div>
                     <div class="input-field col s12">
+                        <input name="idUsuario" value="${sessionScope['usuarioAutenticado'].id}" type="hidden">
                         <textarea class="materialize-textarea" id="conteudo" name="conteudo" required=""></textarea>
                         <label for="conteudo">Conteúdo do projeto</label>
                     </div>
@@ -60,7 +61,7 @@
         <div class="row col s10">
             <h5 style="margin-left: 10px">Projetos já cadastrados: </h5>
             <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
-                <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || usuario.tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
+                <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || sessionScope['usuarioAutenticado'].tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
                     <div class="col m6 l4">
                         <div class="card">
                             <div class="card-image">
