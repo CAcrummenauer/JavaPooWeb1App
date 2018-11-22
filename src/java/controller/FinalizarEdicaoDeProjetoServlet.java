@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Projeto;
 
 @WebServlet(urlPatterns = "finalizarEdicaoDeProjeto")
-public class FinalizarEdicaoDeProjeto extends HttpServlet {
+public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {

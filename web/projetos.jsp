@@ -90,6 +90,13 @@
                                                 <i class="material-icons right">mode_edit</i>
                                             </button>
                                         </form>
+                                        <br>
+                                        <form action="excluirProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <button class="btn waves-effect waves-light" type="submit" name="action">Excluir
+                                                <i class="material-icons right">delete_forever</i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
