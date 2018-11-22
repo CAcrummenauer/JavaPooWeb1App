@@ -9,8 +9,8 @@ CREATE TABLE Usuario (
 CREATE TABLE Projeto (
     id SERIAL PRIMARY KEY,
     id_usuario INT NOT NULL,
-    nome VARCHAR(128) NOT NULL,
-    descricao VARCHAR(512) NOT NULL,
+    nome VARCHAR(32) NOT NULL,
+    descricao VARCHAR(128) NOT NULL,
     conteudo TEXT NOT NULL,
     situacao VARCHAR(64) NOT NULL,
     imagem OID,

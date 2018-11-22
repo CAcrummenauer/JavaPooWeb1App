@@ -57,55 +57,38 @@
         <div>
             <hr>
         </div>
-        <div class="row">
-            <div>
-                <div class="col s12">
-                    <h5>Projetos já cadastrados: </h5>
-                    <table class="highlight">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Descrição</th>
-                                <th>Conteúdo</th>
-                                <th>Opções</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
-                                <tr>
-                                    <td>
-                                        ${projeto.nome}
-                                    </td>
-                                    <td>
-                                        ${projeto.descricao}
-                                    </td>
-                                    <td>
-                                        ${projeto.conteudo}
-                                    </td>
-                                    <td>
-                                        <form action="editarProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn waves-effect waves-light" type="submit" name="action">Editar
-                                                <i class="material-icons right">mode_edit</i>
-                                            </button>
-                                        </form>
-                                        <br>
-                                        <form action="excluirProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn waves-effect waves-light" type="submit" name="action">Excluir
-                                                <i class="material-icons right">delete_forever</i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+        <div class="row col s1"></div>
+        <div class="row col s10">
+            <h5>Projetos já cadastrados: </h5>
+            <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
+                <div class="col s3">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="imagens/imagem.jpg">
+                            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="card-content">
+                            <span class="card-title">${projeto.nome}</span>
+                            <p>${projeto.descricao}</p>
+                            <form action="editarProjeto" method="POST">
+                                <input name="id" value="${projeto.id}" type="hidden">
+                                <button class="btn waves-effect waves-light yellow accent-2" type="submit" name="action">Editar
+                                    <i class="material-icons left">mode_edit</i>
+                                </button>
+                            </form>
+                            <br>
+                            <form action="excluirProjeto" method="POST">
+                                <input name="id" value="${projeto.id}" type="hidden">
+                                <button class="btn waves-effect waves-light red" type="submit" name="action">Excluir
+                                    <i class="material-icons left">delete_forever</i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="col s1"></div>
-            </div>
+            </c:forEach>                
         </div>
+        <div class="col s1"></div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>
