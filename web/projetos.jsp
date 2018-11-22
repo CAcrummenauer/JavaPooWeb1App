@@ -76,17 +76,27 @@
                             <div class="row col s3">
                                 <form action="editarProjeto" method="POST">
                                     <input name="id" value="${projeto.id}" type="hidden">
-                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light yellow darken-1" type="submit" name="action" style="margin-right: 80px">
+                                    <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
                                         <i class="material-icons left">mode_edit</i>
                                     </button>
                                 </form>
                             </div>
-                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && (projeto.situacao == 'Aguardando avaliação' || projeto.situacao == 'Reprovado')}">
+                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao != 'Aprovado'}">
                                 <div class="row col s3">
                                     <form action="aprovarProjeto" method="POST">
                                         <input name="id" value="${projeto.id}" type="hidden">
                                         <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
-                                            <i class="material-icons left">verified_user</i>
+                                            <i class="material-icons left">thumb_up</i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </c:if>
+                            <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao == 'Aprovado'}">
+                                <div class="row col s3">
+                                    <form action="reprovarProjeto" method="POST">
+                                        <input name="id" value="${projeto.id}" type="hidden">
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light lime accent-2" type="submit" name="action" style="margin-right: 160px">
+                                            <i class="material-icons left">thumb_down</i>
                                         </button>
                                     </form>
                                 </div>
