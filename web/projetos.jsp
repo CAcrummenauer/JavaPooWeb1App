@@ -65,7 +65,6 @@
                         <div class="card">
                             <div class="card-image">
                                 <img src="imagens/imagem.jpg">
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
                                     <div class="row col s3">
                                         <form action="excluirProjeto" method="POST">
