@@ -16,15 +16,13 @@ public class ReprovarProjetoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         new ProjetoDao().reprovarProjeto(id);
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

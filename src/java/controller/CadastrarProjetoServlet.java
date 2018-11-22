@@ -3,6 +3,7 @@ package controller;
 import dao.ProjetoDao;
 import model.Projeto;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,9 +21,12 @@ public class CadastrarProjetoServlet extends HttpServlet {
         int idUsuario = Integer.parseInt(httpServletRequest.getParameter("idUsuario"));
         System.out.println(nome);
         new ProjetoDao().criarProjeto(new Projeto(nome, descricao, conteudo, "Aguardando avaliação"), idUsuario);
-//        RequestDispatcher requestDispatcher;
-//        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-//        requestDispatcher.forward(httpServletRequest, httpServletResponse);
         httpServletResponse.sendRedirect("projetos");
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

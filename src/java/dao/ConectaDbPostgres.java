@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Classe responsável gerar conexões com o sistema de banco de dados.
+ * Classe responsável por gerar conexões com o sistema de banco de dados.
  *
  * @author Cezar Augusto Crummenauer
  */
@@ -27,6 +27,8 @@ public class ConectaDbPostgres {
             classNotFoundException.printStackTrace();
         } catch (SQLException sQLException) {
             sQLException.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
         return connection;
     }

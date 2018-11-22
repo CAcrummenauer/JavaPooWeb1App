@@ -58,9 +58,9 @@
         <div>
             <hr>
         </div>
-        <div class="row col s10">
-            <h5 style="margin-left: 10px">Projetos já cadastrados: </h5>
-            <c:forEach var="projeto" items="${daoProjetos.obterProjetos()}">
+        <div class="row col s12">
+            <h5 style = "margin-left: 10px">Projetos já cadastrados: </h5>
+            <c:forEach var = "projeto" items = "${daoProjetos.obterProjetos()}">
                 <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || sessionScope['usuarioAutenticado'].tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
                     <div class="col m6 l4">
                         <div class="card">
@@ -75,8 +75,6 @@
                                             </button>
                                         </form>
                                     </div>
-                                </c:if>
-                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
                                     <div class="row col s3">
                                         <form action="editarProjeto" method="POST">
                                             <input name="id" value="${projeto.id}" type="hidden">
@@ -86,25 +84,27 @@
                                         </form>
                                     </div>
                                 </c:if>
-                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao != 'Aprovado'}">
-                                    <div class="row col s3">
-                                        <form action="aprovarProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
-                                                <i class="material-icons left">thumb_up</i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </c:if>
-                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' && projeto.situacao == 'Aprovado'}">
-                                    <div class="row col s3">
-                                        <form action="reprovarProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light orange accent-4" type="submit" name="action" style="margin-right: 160px">
-                                                <i class="material-icons left">thumb_down</i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador'}">
+                                    <c:if test = "${projeto.situacao != 'Aprovado'}">
+                                        <div class="row col s3">
+                                            <form action="aprovarProjeto" method="POST">
+                                                <input name="id" value="${projeto.id}" type="hidden">
+                                                <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
+                                                    <i class="material-icons left">thumb_up</i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </c:if>
+                                    <c:if test = "${projeto.situacao == 'Aprovado'}">
+                                        <div class="row col s3">
+                                            <form action="reprovarProjeto" method="POST">
+                                                <input name="id" value="${projeto.id}" type="hidden">
+                                                <button class="btn-floating btn-large halfway-fab waves-effect waves-light orange accent-4" type="submit" name="action" style="margin-right: 160px">
+                                                    <i class="material-icons left">thumb_down</i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </c:if>
                                 </c:if>
                             </div>
                             <div class="card-content">

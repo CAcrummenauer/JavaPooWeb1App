@@ -49,8 +49,7 @@ public class AutenticarUsuarioServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

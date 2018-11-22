@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = "editarProjeto")
 public class EditarProjetoServlet extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
@@ -25,8 +24,7 @@ public class EditarProjetoServlet extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

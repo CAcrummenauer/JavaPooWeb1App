@@ -19,22 +19,14 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
         String descricao = httpServletRequest.getParameter("descricao");
         String conteudo = httpServletRequest.getParameter("conteudo");
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
-        RequestDispatcher requestDispatcher;
-        
-        if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"))) {
-            requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-            requestDispatcher.forward(httpServletRequest, httpServletResponse);
-        } else {
-            httpServletRequest.setAttribute("mensagem", "Deu ruim ao atuzalizar o projeto!");
-            requestDispatcher = httpServletRequest.getRequestDispatcher("index.jsp");
-            requestDispatcher.forward(httpServletRequest, httpServletResponse);
-        }
+        new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"));
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher;
-        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }
