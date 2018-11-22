@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = "editarProjeto")
-public class AtualizarProjetoServlet extends HttpServlet {
+public class EditarProjetoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
@@ -20,6 +20,13 @@ public class AtualizarProjetoServlet extends HttpServlet {
         HttpSession httpSession = httpServletRequest.getSession();
         httpSession.setAttribute("projeto", new ProjetoDao().obterProjeto(Integer.parseInt(id)));
         requestDispatcher = httpServletRequest.getRequestDispatcher("editarProjeto.jsp");
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher;
+        requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

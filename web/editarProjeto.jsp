@@ -43,14 +43,12 @@
                         <label for="descricao">Descrição do projeto</label>
                     </div>
                     <div class="input-field col s12">
-                        <input value="${sessionScope['projeto'].id}" type="hidden">
-                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required="">
-                            ${sessionScope['projeto'].conteudo}
-                        </textarea>
+                        <input value="${sessionScope['projeto'].id}" name="id" type="hidden">
+                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required="">${sessionScope['projeto'].conteudo}</textarea>
                         <label for="conteudo">Conteúdo do projeto</label>
                     </div>
                     <div class="col s12">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Atualizar projeto
                             <i class="material-icons right">send</i>
                         </button>
                     </div>

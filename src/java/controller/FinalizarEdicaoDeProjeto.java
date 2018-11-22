@@ -18,10 +18,10 @@ public class FinalizarEdicaoDeProjeto extends HttpServlet {
         String nome = httpServletRequest.getParameter("nome");
         String descricao = httpServletRequest.getParameter("descricao");
         String conteudo = httpServletRequest.getParameter("conteudo");
-        String id = httpServletRequest.getParameter("id");
+        int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         RequestDispatcher requestDispatcher;
         
-        if (new ProjetoDao().atualizarProjeto(new Projeto(Integer.parseInt(id), nome, descricao, conteudo, "Aguardando aprovação..."))) {
+        if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando aprovação..."))) {
             requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
             requestDispatcher.forward(httpServletRequest, httpServletResponse);
         } else {
