@@ -133,6 +133,22 @@ public class ProjetoDao {
         }
         return false;
     }
+    
+    public boolean reprovarProjeto(int idProjeto) {
+        try {
+            Connection connection = new ConectaDbPostgres().getConexao();
+            String sql = "UPDATE projeto SET situacao = 'Reprovado' WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, idProjeto);
+            if (preparedStatement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
+            sQLException.printStackTrace();
+        }
+        return false;
+    }
 
     /**
      * Retorna todos os projetos cadastrados em uma lista. Retorna null se não houver resultados.
