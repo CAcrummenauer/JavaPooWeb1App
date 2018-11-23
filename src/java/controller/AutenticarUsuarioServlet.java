@@ -34,7 +34,7 @@ public class AutenticarUsuarioServlet extends HttpServlet {
                 requestDispatcher.forward(httpServletRequest, httpServletResponse);
             }
         } else {
-            if (new UsuarioDao().criarUsuario(new Usuario(nome, email, senha, "Usuario"))) {
+            if (new UsuarioDao().criarUsuario(new Usuario(nome, email, senha, "Usuário padrão"))) {
                 HttpSession httpSession = httpServletRequest.getSession();
                 httpSession.setAttribute("usuarioAutenticado", new UsuarioDao().autenticarUsuario(email, senha));
                 requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
