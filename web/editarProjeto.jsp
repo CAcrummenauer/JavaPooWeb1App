@@ -17,6 +17,8 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="tinymce/tinymce.min.js"></script>
+        <script>tinymce.init({selector: 'textarea'});</script>
     </head>
     <body>
         <nav>
@@ -44,8 +46,7 @@
                     </div>
                     <div class="input-field col s12">
                         <input value="${sessionScope['projeto'].id}" name="id" type="hidden">
-                        <textarea class="materialize-textarea" id="conteudo" name="conteudo" required="">${sessionScope['projeto'].conteudo}</textarea>
-                        <label for="conteudo">Conteúdo do projeto</label>
+                        <textarea id="conteudo" name="conteudo" required="">${sessionScope['projeto'].conteudo}</textarea>
                     </div>
                     <div class="col s12">
                         <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i>Atenção: Projetos atualizados precisão aguardar a moderação novamente... <a href="projetos">Voltar para os projetos sem alterar nada</a></p>

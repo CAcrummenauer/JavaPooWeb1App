@@ -27,6 +27,7 @@
         <div class="row container col s12">
             <h3>${sessionScope['projeto'].nome}</h3>
             <h5>${sessionScope['projeto'].descricao}</h5>
+            <hr>
             <p>${sessionScope['projeto'].conteudo}</p>
             <a href="projetos">Voltar para os projetos</a>
         </div>

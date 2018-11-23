@@ -36,7 +36,9 @@
         </nav>
         <div class="row container">
             <div>
-                <h5 style="margin-left: 10px">Aqui, você pode cadastrar novos projetos:</h5>
+                <h5 style="margin-left: 10px">Aqui, você pode cadastrar novos projetos rapidamente:<br>
+                Você pode editar o projeto após criado para ajustar os detalhes...
+                </h5>
                 <form action="cadastrarProjeto" method="POST">
                     <div class="input-field col s4">
                         <input type="text" class="validate" id="nome" name="nome" required="">
@@ -55,11 +57,11 @@
                         <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto
                             <i class="material-icons right">send</i>
                         </button>
-                        <c:if test="${not empty mensagem}">
-                            <strong class="orange-text text-accent-4"> ${mensagem}</strong><br>
-                        </c:if>
                     </div>
                 </form>
+                <c:if test="${not empty mensagem}">
+                    <strong class="orange-text text-accent-4"> ${mensagem}</strong><br>
+                </c:if>
             </div>
         </div>
         <div>
