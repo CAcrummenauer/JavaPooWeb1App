@@ -16,10 +16,15 @@ public class ExcluirProjetoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         String nome = httpServletRequest.getParameter("nome");
-        new ProjetoDao().deletarProjeto(id);
-        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" EXCLUIDO com sucesso!");
-        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        if (new ProjetoDao().deletarProjeto(id)) {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" EXCLUIDO com sucesso!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        } else {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Ocorreu um ERRO durante a EXCLUSÃO do projeto \"" + nome + "\"!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        }
     }
 
     @Override

@@ -16,10 +16,15 @@ public class AprovarProjetoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
         String nome = httpServletRequest.getParameter("nome");
-        new ProjetoDao().aprovarProjeto(id);
-        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" APROVADO com sucesso!");
-        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        if (new ProjetoDao().aprovarProjeto(id)) {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" APROVADO com sucesso!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        } else {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Ocorreu um ERRO durante a APROVAÇÃO do projeto \"" + nome + "\"!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        }        
     }
 
     @Override

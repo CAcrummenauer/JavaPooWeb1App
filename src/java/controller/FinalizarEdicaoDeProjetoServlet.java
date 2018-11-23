@@ -19,10 +19,15 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
         String descricao = httpServletRequest.getParameter("descricao");
         String conteudo = httpServletRequest.getParameter("conteudo");
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
-        new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"));        
-        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" ATUALIZADO com sucesso!");
-        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"))) {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" ATUALIZADO com sucesso!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        } else {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Ocorreu um ERRO durante a ATUALIZAÇÃO do projeto \"" + nome + "\"!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        }
     }
 
     @Override

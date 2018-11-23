@@ -15,11 +15,16 @@ public class ReprovarProjetoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
-        new ProjetoDao().reprovarProjeto(id);
         String nome = httpServletRequest.getParameter("nome");
-        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" REPROVADO com sucesso!");
-        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-        requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        if (new ProjetoDao().reprovarProjeto(id)) {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" REPROVADO com sucesso!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        } else {
+            httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Ocorreu um ERRO durante a REPROVAÇÃO do projeto \"" + nome + "\"!");
+            RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+            requestDispatcher.forward(httpServletRequest, httpServletResponse);
+        }
     }
 
     @Override

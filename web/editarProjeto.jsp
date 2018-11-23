@@ -48,7 +48,7 @@
                         <label for="conteudo">Conteúdo do projeto</label>
                     </div>
                     <div class="col s12">
-                        <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i>Atenção: Projetos atualizados precisão aguardar moderação novamente... <a href="projetos">Voltar para os projetos sem alterar nada</a></p>
+                        <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i>Atenção: Projetos atualizados precisão aguardar a moderação novamente... <a href="projetos">Voltar para os projetos sem alterar nada</a></p>
                         <button class="btn waves-effect waves-light" type="submit" name="action">Atualizar projeto
                             <i class="material-icons right">send</i>
                         </button>

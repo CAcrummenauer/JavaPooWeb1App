@@ -52,7 +52,7 @@
                             <i class="material-icons right">send</i>
                         </button>
                         <c:if test="${not empty mensagem}">
-                            <strong class="green-text text-darken-2"> ${mensagem}</strong><br>
+                            <strong class="orange-text text-accent-4"> ${mensagem}</strong><br>
                         </c:if>
                     </div>
                 </form>
@@ -63,7 +63,7 @@
         </div>
         <div class="row col s12">
             <c:if test="${not empty mensagemParaProjetoJaCadastrado}">
-                <p style = "margin-left: 10px"><strong class="green-text text-darken-2"> ${mensagemParaProjetoJaCadastrado}</strong></p>
+                <p style = "margin-left: 10px"><strong class="orange-text text-accent-4"> ${mensagemParaProjetoJaCadastrado}</strong></p>
             </c:if>
             <h5 style = "margin-left: 10px">Projetos já cadastrados:</h5>
             <c:forEach var = "projeto" items = "${daoProjetos.obterProjetos()}">

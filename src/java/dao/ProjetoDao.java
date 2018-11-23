@@ -118,6 +118,12 @@ public class ProjetoDao {
         return false;
     }
 
+    /**
+     * Marca um projeto como aprovado. Retorna true se a operação terminou com sucesso ou retorna false se houve algum erro.
+     *
+     * @param idProjeto
+     * @return
+     */
     public boolean aprovarProjeto(int idProjeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
@@ -134,6 +140,12 @@ public class ProjetoDao {
         return false;
     }
 
+    /**
+     * Marca um projeto como reprovado. Retorna true se a operação terminou com sucesso ou retorna false se houve algum erro.
+     *
+     * @param idProjeto
+     * @return
+     */
     public boolean reprovarProjeto(int idProjeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
