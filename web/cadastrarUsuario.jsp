@@ -13,7 +13,7 @@
     <body>
         <nav>
             <div class="nav-wrapper">
-                <a style="padding-left: 20px" href="projetos" class="brand-logo"><i class="material-icons">cloud</i>Projetos CSI</a>
+                <a style="padding-left: 20px" href="index.jsp" class="brand-logo"><i class="material-icons">cloud</i>Projetos CSI</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.jsp">Acessar conta</a></li>
                 </ul>

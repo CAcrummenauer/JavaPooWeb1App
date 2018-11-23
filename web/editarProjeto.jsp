@@ -25,10 +25,14 @@
             <div class="nav-wrapper">
                 <a style="padding-left: 20px" href="projetos" class="brand-logo"><i class="material-icons">cloud</i>Projetos CSI</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down" style="margin-right: 25px">
-                    <form action="sair">
-                        ${sessionScope['usuarioAutenticado'].nome}
-                        <button style="margin-left: 10px" class="btn waves-effect waves-light" type="submit" name="action">Sair</button>
-                    </form>
+                    <li><a href="projetos">Projetos</a></li>
+                    <li><a href="usuarios">Usuários</a></li>
+                    <li style = "margin-left: 25px; margin-right: 10px">
+                        <form action="sair">
+                            ${sessionScope['usuarioAutenticado'].nome}
+                            <button style = "margin-left: 10px" class="btn waves-effect waves-light" type="submit" name="action">Sair</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </nav>
