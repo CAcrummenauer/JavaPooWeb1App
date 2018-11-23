@@ -149,11 +149,31 @@ public class UsuarioDao {
      * @param idUsuario
      * @return 
      */
-
     public boolean tornarUsuarioPadrao(int idUsuario) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
             String sql = "UPDATE usuario SET tipo = 'Usuário padrão' WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, idUsuario);
+            if (preparedStatement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
+            sQLException.printStackTrace();
+        }
+        return false;
+    }
+    
+    /**
+     * Altera o tipo de usuário para "Usuário padrão". Retorna true se a operação foi efetuada com sucesso ou retorna false se houve um erro durante o processamento.
+     * @param idUsuario
+     * @return 
+     */
+    public boolean tornarUsuarioAdministrador(int idUsuario) {
+        try {
+            Connection connection = new ConectaDbPostgres().getConexao();
+            String sql = "UPDATE usuario SET tipo = 'Administrador' WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, idUsuario);
             if (preparedStatement.executeUpdate() > 0) {

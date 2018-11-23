@@ -62,12 +62,12 @@
                                             <input name="id" value="${usuario.id}" type="hidden">
                                             <input name="nome" value="${usuario.nome}" type="hidden">
                                             <button class="btn-large waves-effect waves-light green" type="submit" name="action">
-                                                Tornar usuário comum <i class="material-icons left">thumb_down</i>
+                                                Tornar usuário padrão <i class="material-icons left">thumb_down</i>
                                             </button>
                                         </form>
                                     </c:if>
                                     <c:if test = "${usuario.tipo != 'Administrador'}">
-                                        <form action="tornarAdministrador" method="POST">
+                                        <form action="tornarUsuarioAdministrador" method="POST">
                                             <input name="id" value="${usuario.id}" type="hidden">
                                             <input name="nome" value="${usuario.nome}" type="hidden">
                                             <button class="btn-large waves-effect waves-light blue accent-4" type="submit" name="action">
