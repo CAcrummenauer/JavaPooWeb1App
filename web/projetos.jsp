@@ -126,6 +126,13 @@
                                         <p class="green-text text-darken-4"><i class="material-icons">public</i> Projeto aprovado! Ele pode ser visto publicamente...</p>
                                     </c:if>
                                 </c:if>
+                                <br>
+                                <form action="verProjeto" method="POST">
+                                    <input name="id" value="${projeto.id}" type="hidden">
+                                    <button class="btn-large waves-effect waves-light blue" type="submit" name="action">
+                                        <i class="material-icons left">open_in_new</i>Ver projeto
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
