@@ -13,6 +13,6 @@ CREATE TABLE Projeto (
     descricao VARCHAR(128) NOT NULL,
     conteudo TEXT NOT NULL,
     situacao VARCHAR(64) NOT NULL,
-    imagem OID,
+    imagem VARCHAR(64) NOT NULL DEFAULT 'imagens/imagemDefault.jpg',
     FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
 );
