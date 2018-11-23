@@ -35,7 +35,7 @@
         </nav>
         <div class="container row col s12">
             <c:if test="${not empty mensagemSobreUsuario}">
-                <p style = "margin-left: 10px"><strong class="orange-text text-accent-4"> ${mensagemSobreUsuario}</strong></p>
+                <p><strong class="orange-text text-accent-4"> ${mensagemSobreUsuario}</strong></p>
             </c:if>
             <h5 style = "margin-left: 2px">Usuários cadastrados:</h5>
             <table class="highlight">
@@ -58,7 +58,7 @@
                             <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador'}">
                                 <td class="centered">
                                     <c:if test = "${usuario.tipo == 'Administrador'}">
-                                        <form action="tornarUsuario" method="POST">
+                                        <form action="tornarUsuarioPadrao" method="POST">
                                             <input name="id" value="${usuario.id}" type="hidden">
                                             <input name="nome" value="${usuario.nome}" type="hidden">
                                             <button class="btn-large waves-effect waves-light green" type="submit" name="action">
