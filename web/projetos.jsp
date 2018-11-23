@@ -37,7 +37,7 @@
         <div class="row container">
             <div>
                 <h5 style="margin-left: 10px">Aqui, você pode cadastrar novos projetos rapidamente:<br>
-                Você pode editar o projeto após criado para ajustar os detalhes...
+                    Você pode editar o projeto após criado para ajustar os detalhes...
                 </h5>
                 <form action="cadastrarProjeto" method="POST">
                     <div class="input-field col s4">
@@ -117,23 +117,27 @@
                             <div class="card-content">
                                 <span class="card-title">${projeto.nome}</span>
                                 <p>${projeto.descricao}</p>
-                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
-                                    <c:if test = "${projeto.situacao == 'Reprovado'}">
-                                        <p class="red-text text-darken-4"><i class="material-icons">report</i> Projeto reprovado!</p>
+                                <center>
+                                    <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
+                                        <c:if test = "${projeto.situacao == 'Reprovado'}">
+                                            <p class="red-text text-darken-4"><i class="material-icons">report</i><br>Projeto reprovado!</p>
+                                        </c:if>
+                                        <c:if test = "${projeto.situacao == 'Aguardando avaliação'}">
+                                            <p class="orange-text text-darken-2"><i class="material-icons">report_problem</i><br>Projeto aguardando avaliação...</p>
+                                        </c:if>
+                                        <c:if test = "${projeto.situacao == 'Aprovado'}">
+                                            <p class="green-text text-darken-4"><i class="material-icons">public</i><br>Projeto aprovado! Ele pode ser visto publicamente...</p>
+                                        </c:if>
                                     </c:if>
-                                    <c:if test = "${projeto.situacao == 'Aguardando avaliação'}">
-                                        <p class="orange-text text-darken-2"><i class="material-icons">report_problem</i> Projeto aguardando avaliação...</p>
-                                    </c:if>
-                                    <c:if test = "${projeto.situacao == 'Aprovado'}">
-                                        <p class="green-text text-darken-4"><i class="material-icons">public</i> Projeto aprovado! Ele pode ser visto publicamente...</p>
-                                    </c:if>
-                                </c:if>
+                                </center>
                                 <br>
                                 <form action="verProjeto" method="POST">
                                     <input name="id" value="${projeto.id}" type="hidden">
-                                    <button class="btn-large waves-effect waves-light blue" type="submit" name="action">
-                                        <i class="material-icons left">open_in_new</i>Ver projeto
-                                    </button>
+                                    <center>
+                                        <button class="btn-small waves-effect waves-light blue" type="submit" name="action">
+                                            <i class="material-icons left">open_in_new</i>Ver projeto
+                                        </button>
+                                    </center>
                                 </form>
                             </div>
                         </div>
