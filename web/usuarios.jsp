@@ -56,32 +56,38 @@
                             <td>${usuario.email}</td>
                             <td>${usuario.tipo}</td>
                             <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador'}">
-                                <td class="centered">
+                                <td>
                                     <c:if test = "${usuario.tipo == 'Administrador'}">
                                         <form action="tornarUsuarioPadrao" method="POST">
                                             <input name="id" value="${usuario.id}" type="hidden">
                                             <input name="nome" value="${usuario.nome}" type="hidden">
-                                            <button class="btn-large waves-effect waves-light green" type="submit" name="action">
-                                                Tornar usuário padrão <i class="material-icons left">thumb_down</i>
-                                            </button>
+                                            <center>
+                                                <button class="btn-small waves-effect waves-light green" type="submit" name="action">
+                                                    Tornar usuário padrão <i class="material-icons left">arrow_downward</i>
+                                                </button>
+                                            </center>
                                         </form>
                                     </c:if>
                                     <c:if test = "${usuario.tipo != 'Administrador'}">
                                         <form action="tornarUsuarioAdministrador" method="POST">
                                             <input name="id" value="${usuario.id}" type="hidden">
                                             <input name="nome" value="${usuario.nome}" type="hidden">
-                                            <button class="btn-large waves-effect waves-light blue accent-4" type="submit" name="action">
-                                                Tornar usuário administrador<i class="material-icons left">thumb_up</i>
-                                            </button>
+                                            <center>
+                                                <button class="btn-small waves-effect waves-light blue accent-4" type="submit" name="action">
+                                                    Tornar usuário administrador<i class="material-icons left">arrow_upward</i>
+                                                </button>
+                                            </center>
                                         </form>
                                     </c:if>
                                     <br>
                                     <form action="excluirUsuario" method="POST">
                                         <input name="id" value="${usuario.id}" type="hidden">
                                         <input name="nome" value="${usuario.nome}" type="hidden">
-                                        <button class="btn-large waves-effect waves-light red accent-4" type="submit" name="action">
-                                            Excluir usuário<i class="material-icons left">delete_forever</i>
-                                        </button>
+                                        <center>
+                                            <button class="btn-small waves-effect waves-light red accent-4" type="submit" name="action">
+                                                Excluir usuário<i class="material-icons left">delete_forever</i>
+                                            </button>
+                                        </center>
                                     </form>
                                 </td>
                             </c:if>
