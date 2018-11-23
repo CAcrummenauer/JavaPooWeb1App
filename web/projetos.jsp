@@ -32,7 +32,7 @@
         </nav>
         <div class="row container">
             <div>
-                <h5>Aqui, você pode cadastrar novos projetos:</h5>
+                <h5 style="margin-left: 10px">Aqui, você pode cadastrar novos projetos:</h5>
                 <form action="cadastrarProjeto" method="POST">
                     <div class="input-field col s4">
                         <input type="text" class="validate" id="nome" name="nome" required="">
@@ -51,6 +51,9 @@
                         <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar projeto
                             <i class="material-icons right">send</i>
                         </button>
+                        <c:if test="${not empty mensagem}">
+                            <strong class="green-text text-darken-2"> ${mensagem}</strong><br>
+                        </c:if>
                     </div>
                 </form>
             </div>
@@ -59,51 +62,49 @@
             <hr>
         </div>
         <div class="row col s12">
-            <h5 style = "margin-left: 10px">Projetos já cadastrados: </h5>
+            <c:if test="${not empty mensagemParaProjetoJaCadastrado}">
+                <p style = "margin-left: 10px"><strong class="green-text text-darken-2"> ${mensagemParaProjetoJaCadastrado}</strong></p>
+            </c:if>
+            <h5 style = "margin-left: 10px">Projetos já cadastrados:</h5>
             <c:forEach var = "projeto" items = "${daoProjetos.obterProjetos()}">
                 <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || sessionScope['usuarioAutenticado'].tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
-                    <div class="col m6 l4">
+                    <div class="row col m6 l3">
                         <div class="card">
                             <div class="card-image">
                                 <img src="imagens/imagem.jpg">
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
-                                    <div class="row col s3">
-                                        <form action="excluirProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
-                                                <i class="material-icons left">delete_forever</i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <div class="row col s3">
-                                        <form action="editarProjeto" method="POST">
-                                            <input name="id" value="${projeto.id}" type="hidden">
-                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
-                                                <i class="material-icons left">mode_edit</i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <form action="excluirProjeto" method="POST">
+                                        <input name="id" value="${projeto.id}" type="hidden">
+                                        <input name="nome" value="${projeto.nome}" type="hidden">
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" type="submit" name="action">
+                                            <i class="material-icons left">delete_forever</i>
+                                        </button>
+                                    </form>
+                                    <form action="editarProjeto" method="POST">
+                                        <input name="id" value="${projeto.id}" type="hidden">
+                                        <button class="btn-floating btn-large halfway-fab waves-effect waves-light blue" type="submit" name="action" style="margin-right: 80px">
+                                            <i class="material-icons left">mode_edit</i>
+                                        </button>
+                                    </form>
                                 </c:if>
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador'}">
                                     <c:if test = "${projeto.situacao != 'Aprovado'}">
-                                        <div class="row col s3">
-                                            <form action="aprovarProjeto" method="POST">
-                                                <input name="id" value="${projeto.id}" type="hidden">
-                                                <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
-                                                    <i class="material-icons left">thumb_up</i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <form action="aprovarProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <input name="nome" value="${projeto.nome}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light green" type="submit" name="action" style="margin-right: 160px">
+                                                <i class="material-icons left">thumb_up</i>
+                                            </button>
+                                        </form>
                                     </c:if>
                                     <c:if test = "${projeto.situacao == 'Aprovado'}">
-                                        <div class="row col s3">
-                                            <form action="reprovarProjeto" method="POST">
-                                                <input name="id" value="${projeto.id}" type="hidden">
-                                                <button class="btn-floating btn-large halfway-fab waves-effect waves-light orange accent-4" type="submit" name="action" style="margin-right: 160px">
-                                                    <i class="material-icons left">thumb_down</i>
-                                                </button>
-                                            </form>
-                                        </div>
+                                        <form action="reprovarProjeto" method="POST">
+                                            <input name="id" value="${projeto.id}" type="hidden">
+                                            <input name="nome" value="${projeto.nome}" type="hidden">
+                                            <button class="btn-floating btn-large halfway-fab waves-effect waves-light orange accent-4" type="submit" name="action" style="margin-right: 160px">
+                                                <i class="material-icons left">thumb_down</i>
+                                            </button>
+                                        </form>
                                     </c:if>
                                 </c:if>
                             </div>
@@ -115,7 +116,7 @@
                                         <p class="red-text text-darken-4"><i class="material-icons">report</i> Projeto reprovado!</p>
                                     </c:if>
                                     <c:if test = "${projeto.situacao == 'Aguardando avaliação'}">
-                                        <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i> Projeto aguardando avaliação...</p>
+                                        <p class="orange-text text-darken-2"><i class="material-icons">report_problem</i> Projeto aguardando avaliação...</p>
                                     </c:if>
                                     <c:if test = "${projeto.situacao == 'Aprovado'}">
                                         <p class="green-text text-darken-4"><i class="material-icons">public</i> Projeto aprovado! Ele pode ser visto publicamente...</p>

@@ -12,16 +12,16 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = "editarProjeto")
 public class EditarProjetoServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         String id = httpServletRequest.getParameter("id");
-        RequestDispatcher requestDispatcher;
         HttpSession httpSession = httpServletRequest.getSession();
         httpSession.setAttribute("projeto", new ProjetoDao().obterProjeto(Integer.parseInt(id)));
-        requestDispatcher = httpServletRequest.getRequestDispatcher("editarProjeto.jsp");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("editarProjeto.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");

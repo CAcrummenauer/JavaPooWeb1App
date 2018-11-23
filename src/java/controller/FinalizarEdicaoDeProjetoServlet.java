@@ -19,7 +19,8 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
         String descricao = httpServletRequest.getParameter("descricao");
         String conteudo = httpServletRequest.getParameter("conteudo");
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
-        new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"));
+        new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação"));        
+        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" ATUALIZADO com sucesso!");
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }

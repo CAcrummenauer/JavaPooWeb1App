@@ -32,7 +32,7 @@
         </nav>
         <div class="row container">
             <div>
-                <h5>Aqui, você pode editar seu projeto:</h5>
+                <h5 style="margin-left: 10px">Aqui, você pode editar seu projeto:</h5>
                 <form action="finalizarEdicaoDeProjeto" method="POST">
                     <div class="input-field col s4">
                         <input type="text" class="validate" id="nome" name="nome" required="" value="${sessionScope['projeto'].nome}">

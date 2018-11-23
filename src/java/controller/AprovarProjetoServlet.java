@@ -15,7 +15,9 @@ public class AprovarProjetoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        String nome = httpServletRequest.getParameter("nome");
         new ProjetoDao().aprovarProjeto(id);
+        httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" APROVADO com sucesso!");
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }

@@ -19,11 +19,12 @@ public class CadastrarProjetoServlet extends HttpServlet {
         String descricao = httpServletRequest.getParameter("descricao");
         String conteudo = httpServletRequest.getParameter("conteudo");
         int idUsuario = Integer.parseInt(httpServletRequest.getParameter("idUsuario"));
-        System.out.println(nome);
         new ProjetoDao().criarProjeto(new Projeto(nome, descricao, conteudo, "Aguardando avaliação"), idUsuario);
-        httpServletResponse.sendRedirect("projetos");
+        httpServletRequest.setAttribute("mensagem", "Projeto \"" + nome + "\" CADASTRADO com sucesso!");
+        RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
+        requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
