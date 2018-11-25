@@ -77,7 +77,7 @@
                     <div class="row col m6 l3">
                         <div class="card">
                             <div class="card-image">
-                                <img src="imagens/imagem.jpg">
+                                <img src="imagens/imagemDefault.jpg">
                                 <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
                                     <form action="excluirProjeto" method="POST">
                                         <input name="id" value="${projeto.id}" type="hidden">

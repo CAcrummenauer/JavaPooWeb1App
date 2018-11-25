@@ -14,5 +14,5 @@ CREATE TABLE Projeto (
     conteudo TEXT NOT NULL,
     situacao VARCHAR(64) NOT NULL,
     imagem VARCHAR(64) NOT NULL DEFAULT 'imagens/imagemDefault.jpg',
-    FOREIGN KEY (id_usuario) REFERENCES Usuario(id)
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id) ON DELETE CASCADE
 );
