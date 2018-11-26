@@ -61,6 +61,7 @@ public class ProjetoDao {
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
                 projeto.setSituacao(resultSet.getString("situacao"));
+                projeto.setImagem(resultSet.getString("imagem"));
                 return projeto;
             }
         } catch (SQLException sQLException) {
@@ -79,13 +80,14 @@ public class ProjetoDao {
     public boolean atualizarProjeto(Projeto projeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
-            String sql = "UPDATE projeto SET nome = ?, descricao = ?, conteudo = ?, situacao = ? WHERE id = ?";
+            String sql = "UPDATE projeto SET nome = ?, descricao = ?, conteudo = ?, situacao = ?, imagem = ? WHERE id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, projeto.getNome());
             preparedStatement.setString(2, projeto.getDescricao());
             preparedStatement.setString(3, projeto.getConteudo());
             preparedStatement.setString(4, projeto.getSituacao());
-            preparedStatement.setInt(5, projeto.getId());
+            preparedStatement.setString(5, projeto.getImagem());
+            preparedStatement.setInt(6, projeto.getId());
             if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }
@@ -182,6 +184,7 @@ public class ProjetoDao {
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
                 projeto.setSituacao(resultSet.getString("situacao"));
+                projeto.setImagem(resultSet.getString("imagem"));
                 projetos.add(projeto);
             }
             return projetos;

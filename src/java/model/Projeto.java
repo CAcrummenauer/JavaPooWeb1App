@@ -13,6 +13,7 @@ public class Projeto {
     private String descricao;
     private String conteudo;
     private String situacao;
+    private String imagem;
 
     public Projeto() {
 
@@ -24,7 +25,7 @@ public class Projeto {
         this.conteudo = conteudo;
         this.situacao = situacao;
     }
-    
+
     public Projeto(int id, String nome, String descricao, String conteudo, String situacao) {
         this.id = id;
         this.nome = nome;
@@ -40,6 +41,15 @@ public class Projeto {
         this.descricao = descricao;
         this.conteudo = conteudo;
         this.situacao = situacao;
+    }
+
+    public Projeto(int id, String nome, String descricao, String conteudo, String situacao, String imagem) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.conteudo = conteudo;
+        this.situacao = situacao;
+        this.imagem = imagem;
     }
 
     public int getId() {
@@ -89,4 +99,13 @@ public class Projeto {
     public void setSituacao(String situacao) {
         this.situacao = situacao;
     }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
 }

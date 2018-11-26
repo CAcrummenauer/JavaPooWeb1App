@@ -39,7 +39,7 @@
         <div class="row container">
             <div>
                 <h5 style="margin-left: 10px">Aqui, você pode editar seu projeto:</h5>
-                <form action="finalizarEdicaoDeProjeto" method="POST">
+                <form action="finalizarEdicaoDeProjeto" method="POST" enctype="multipart/form-data">
                     <div class="input-field col s4">
                         <input type="text" class="validate" id="nome" name="nome" required="" value="${sessionScope['projeto'].nome}">
                         <label for="nome">Nome do projeto</label>
@@ -49,8 +49,17 @@
                         <label for="descricao">Descrição do projeto</label>
                     </div>
                     <div class="input-field col s12">
-                        <input value="${sessionScope['projeto'].id}" name="id" type="hidden">
                         <textarea id="conteudo" name="conteudo" required="">${sessionScope['projeto'].conteudo}</textarea>
+                        <input value="${sessionScope['projeto'].id}" name="id" type="hidden">
+                    </div>
+                    <div class="file-field input-field" style="margin-left: 10px">
+                        <div class="btn">
+                            <span>File</span>
+                            <input type="file" name="file" id="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="Escolha uma foto para o projeto">
+                        </div>
                     </div>
                     <div class="col s12">
                         <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i>Atenção: Projetos atualizados precisão aguardar a moderação novamente... <a href="projetos">Voltar para os projetos sem alterar nada</a></p>
