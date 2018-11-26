@@ -32,7 +32,9 @@
             </div>
         </nav>
         <div class="row container col s12">
-            <h3>${sessionScope['projeto'].nome}</h3>
+            <center>
+                <h3>${sessionScope['projeto'].nome}</h3>
+            </center>
             <h5>${sessionScope['projeto'].descricao}</h5>
             <hr>
             <p>${sessionScope['projeto'].conteudo}</p>

@@ -52,14 +52,9 @@
                         <textarea id="conteudo" name="conteudo" required="">${sessionScope['projeto'].conteudo}</textarea>
                         <input value="${sessionScope['projeto'].id}" name="id" type="hidden">
                     </div>
-                    <div class="file-field input-field" style="margin-left: 10px">
-                        <div class="btn">
-                            <span>File</span>
-                            <input type="file" name="file" id="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Escolha uma foto para o projeto">
-                        </div>
+                    <div style="margin-left: 10px">
+                        Escolha uma imagem para o projeto: 
+                        <input type="file" name="file" id="file" placeholder="Selecione uma imagem">
                     </div>
                     <div class="col s12">
                         <p class="orange-text text-darken-4"><i class="material-icons">report_problem</i>Atenção: Projetos atualizados precisão aguardar a moderação novamente... <a href="projetos">Voltar para os projetos sem alterar nada</a></p>

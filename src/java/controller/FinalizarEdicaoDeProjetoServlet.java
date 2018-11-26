@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -35,12 +36,12 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
                     item.write(new File(caminhoImagemParteA + caminhoImagemParteB));
                 }
             }
-
-            if (new ProjetoDao().atualizarProjeto(new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação", caminhoImagemParteB))) {
-                httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Projeto \"" + nome + "\" ATUALIZADO com sucesso!");
-                /*RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
-                requestDispatcher.forward(httpServletRequest, httpServletResponse);*/
-                httpServletResponse.sendRedirect("projetos");
+            Projeto projeto = new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação", caminhoImagemParteB);
+            if (new ProjetoDao().atualizarProjeto(projeto)) {
+                HttpSession httpSession = httpServletRequest.getSession();
+                httpSession.setAttribute("projeto", projeto);
+                RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("verProjeto.jsp");
+                requestDispatcher.forward(httpServletRequest, httpServletResponse);
             } else {
                 httpServletRequest.setAttribute("mensagemParaProjetoJaCadastrado", "Ocorreu um ERRO durante a ATUALIZAÇÃO do projeto \"" + nome + "\"!");
                 RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("projetos.jsp");
