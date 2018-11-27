@@ -72,12 +72,12 @@ public class ProjetoDao {
     }
 
     /**
-     * Atualiza os dados de um projeto. Retorna true se houver sucesso ou false em caso de falha.
+     * Atualiza os dados de um projeto (incluindo imagem). Retorna true se houver sucesso ou false em caso de falha.
      *
      * @param projeto
      * @return boolean
      */
-    public boolean atualizarProjeto(Projeto projeto) {
+    public boolean atualizarProjetoComImagem(Projeto projeto) {
         try {
             Connection connection = new ConectaDbPostgres().getConexao();
             String sql = "UPDATE projeto SET nome = ?, descricao = ?, conteudo = ?, situacao = ?, imagem = ? WHERE id = ?";
@@ -88,6 +88,32 @@ public class ProjetoDao {
             preparedStatement.setString(4, projeto.getSituacao());
             preparedStatement.setString(5, projeto.getImagem());
             preparedStatement.setInt(6, projeto.getId());
+            if (preparedStatement.executeUpdate() > 0) {
+                return true;
+            }
+        } catch (SQLException sQLException) {
+            System.err.print("Erro: ");
+            sQLException.printStackTrace();
+        }
+        return false;
+    }
+    
+    /**
+     * Atualiza os dados de um projeto (sem atualziar imagem). Retorna true se houver sucesso ou false em caso de falha.
+     *
+     * @param projeto
+     * @return boolean
+     */
+    public boolean atualizarProjetoSemImagem(Projeto projeto) {
+        try {
+            Connection connection = new ConectaDbPostgres().getConexao();
+            String sql = "UPDATE projeto SET nome = ?, descricao = ?, conteudo = ?, situacao = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, projeto.getNome());
+            preparedStatement.setString(2, projeto.getDescricao());
+            preparedStatement.setString(3, projeto.getConteudo());
+            preparedStatement.setString(4, projeto.getSituacao());
+            preparedStatement.setInt(5, projeto.getId());
             if (preparedStatement.executeUpdate() > 0) {
                 return true;
             }

@@ -30,18 +30,18 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
             String descricao = multiparts.get(1).getString();
             String conteudo = multiparts.get(2).getString();
             int id = Integer.parseInt(multiparts.get(3).getString());
-
+            Projeto projeto;
+            boolean funcionou = false;
+            if (multiparts.get(4) == null) {
+                projeto = new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação");
+                funcionou = new ProjetoDao().atualizarProjetoSemImagem(projeto);
+            } else {
+                multiparts.get(4).write(new File(caminhoImagemParteA + caminhoImagemParteB));
+                projeto = new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação", caminhoImagemParteB);
+                funcionou = new ProjetoDao().atualizarProjetoComImagem(projeto);
+            }            
             
-            for (FileItem item : multiparts) {
-                if (!item.isFormField()) {
-                    item.write(new File(caminhoImagemParteA + caminhoImagemParteB));
-                    
-                }
-            }
-            
-            Projeto projeto = new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação", caminhoImagemParteB);
-            
-            if (new ProjetoDao().atualizarProjeto(projeto)) {
+            if (funcionou) {
                 HttpSession httpSession = httpServletRequest.getSession();
                 httpSession.setAttribute("projeto", projeto);
                 RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("verProjeto.jsp");
