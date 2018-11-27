@@ -56,7 +56,7 @@ public class ProjetoDao {
             while (resultSet.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(resultSet.getInt("id"));
-                projeto.setIdUsuario(resultSet.getInt("id_usuario"));
+                projeto.setUsuario(new UsuarioDao().obterUsuario(idProjeto));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));
@@ -179,7 +179,7 @@ public class ProjetoDao {
             while (resultSet.next()) {
                 Projeto projeto = new Projeto();
                 projeto.setId(resultSet.getInt("id"));
-                projeto.setIdUsuario(resultSet.getInt("id_usuario"));
+                projeto.setUsuario(new UsuarioDao().obterUsuario(resultSet.getInt("id_usuario")));
                 projeto.setNome(resultSet.getString("nome"));
                 projeto.setDescricao(resultSet.getString("descricao"));
                 projeto.setConteudo(resultSet.getString("conteudo"));

@@ -73,12 +73,12 @@
             </c:if>
             <h5 style = "margin-left: 10px">Projetos já cadastrados:</h5>
             <c:forEach var = "projeto" items = "${daoProjetos.obterProjetos()}">
-                <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.idUsuario || sessionScope['usuarioAutenticado'].tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
+                <c:if test = "${sessionScope['usuarioAutenticado'].id == projeto.usuario.id || sessionScope['usuarioAutenticado'].tipo == 'Administrador' || projeto.situacao == 'Aprovado'}">
                     <div class="row col m6 l3">
                         <div class="card">
                             <div class="card-image">
                                 <img src="${projeto.imagem}">
-                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
+                                <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.usuario.id}">
                                     <form action="excluirProjeto" method="POST">
                                         <input name="id" value="${projeto.id}" type="hidden">
                                         <input name="nome" value="${projeto.nome}" type="hidden">
@@ -118,7 +118,7 @@
                                 <span class="card-title">${projeto.nome}</span>
                                 <p>${projeto.descricao}</p>
                                 <center>
-                                    <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.idUsuario}">
+                                    <c:if test = "${sessionScope['usuarioAutenticado'].tipo == 'Administrador' || sessionScope['usuarioAutenticado'].id == projeto.usuario.id}">
                                         <c:if test = "${projeto.situacao == 'Reprovado'}">
                                             <p class="red-text text-darken-4"><i class="material-icons">report</i><br>Projeto reprovado!</p>
                                         </c:if>

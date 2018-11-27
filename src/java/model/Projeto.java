@@ -8,12 +8,12 @@ package model;
 public class Projeto {
 
     private int id;
-    private int idUsuario;
     private String nome;
     private String descricao;
     private String conteudo;
     private String situacao;
     private String imagem;
+    private Usuario usuario;
 
     public Projeto() {
 
@@ -34,9 +34,9 @@ public class Projeto {
         this.situacao = situacao;
     }
 
-    public Projeto(int id, int idUsuario, String nome, String descricao, String conteudo, String situacao) {
+    public Projeto(int id, Usuario usuario, String nome, String descricao, String conteudo, String situacao) {
         this.id = id;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
         this.nome = nome;
         this.descricao = descricao;
         this.conteudo = conteudo;
@@ -60,12 +60,12 @@ public class Projeto {
         this.id = id;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getNome() {
