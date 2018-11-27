@@ -31,12 +31,16 @@ public class FinalizarEdicaoDeProjetoServlet extends HttpServlet {
             String conteudo = multiparts.get(2).getString();
             int id = Integer.parseInt(multiparts.get(3).getString());
 
+            
             for (FileItem item : multiparts) {
                 if (!item.isFormField()) {
                     item.write(new File(caminhoImagemParteA + caminhoImagemParteB));
+                    
                 }
             }
+            
             Projeto projeto = new Projeto(id, nome, descricao, conteudo, "Aguardando avaliação", caminhoImagemParteB);
+            
             if (new ProjetoDao().atualizarProjeto(projeto)) {
                 HttpSession httpSession = httpServletRequest.getSession();
                 httpSession.setAttribute("projeto", projeto);
